@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/types/product";
+import { formatPrice } from "@/utils/helpers";
 
 interface ProductCardProps {
   product: Product;
@@ -37,7 +38,7 @@ export default function ProductCard({
 
           <div className="flex items-center justify-between">
             <span className="text-2xl font-bold">
-              ${product.price}
+            {formatPrice(product.price)}
             </span>
 
             <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:scale-105 transition">
