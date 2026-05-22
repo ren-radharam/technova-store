@@ -6,69 +6,77 @@ import Navbar from "@/components/Navbar";
 import { useAuth } from "@/context/AuthContext";
 
 export default function LoginPage() {
-  const [name, setName] = useState("");
+    const [name, setName] = useState("");
+    const [loading, setLoading] = useState(false);
 
-  const router = useRouter();
+    const router = useRouter();
 
-  const {
-    login,
-    continueAsGuest,
-  } = useAuth();
+    const {
+        login,
+        continueAsGuest,
+    } = useAuth();
 
-  const handleLogin = () => {
-    if (!name.trim()) return;
+    const handleLogin = async () => {
+        if (!name.trim()) return;
 
-    login(name);
+        setLoading(true);
 
-    router.push("/");
-  };
+        setTimeout(() => {
+            login(name);
 
-  const handleGuest = () => {
-    continueAsGuest();
+            router.push("/");
 
-    router.push("/");
-  };
+            setLoading(false);
+        }, 800);
+    };
 
-  return (
-    <main className="min-h-screen bg-black text-white">
-      <Navbar />
+    const handleGuest = () => {
+        continueAsGuest();
 
-      <section className="max-w-md mx-auto px-6 pt-40">
-        <div className="border border-white/10 bg-white/5 rounded-3xl p-8">
+        router.push("/");
+    };
 
-          <h1 className="text-4xl font-bold mb-3">
-            Welcome Back
-          </h1>
+    return (
+        <main className="min-h-screen bg-black text-white">
+            <Navbar />
 
-          <p className="text-white/60 mb-8">
-            Login to continue shopping.
-          </p>
+            <section className="max-w-md mx-auto px-6 pt-40">
+                <div className="border border-white/10 bg-white/5 rounded-3xl p-8">
 
-          <input
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) =>
-              setName(e.target.value)
-            }
-            className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 outline-none mb-5"
-          />
+                    <h1 className="text-4xl font-bold mb-3">
+                        Welcome Back
+                    </h1>
 
-          <button
-            onClick={handleLogin}
-            className="w-full bg-white text-black py-4 rounded-2xl font-semibold mb-4 hover:scale-[1.02] transition"
-          >
-            Login
-          </button>
+                    <p className="text-white/60 mb-8">
+                        Login to continue shopping.
+                    </p>
 
-          <button
-            onClick={handleGuest}
-            className="w-full border border-white/10 py-4 rounded-2xl hover:bg-white/10 transition"
-          >
-            Continue as Guest
-          </button>
-        </div>
-      </section>
-    </main>
-  );
+                    <input
+                        type="text"
+                        placeholder="Enter your name"
+                        value={name}
+                        onChange={(e) =>
+                            setName(e.target.value)
+                        }
+                        className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 outline-none mb-5"
+                    />
+
+                    <button
+                        onClick={handleLogin}
+                        disabled={loading}
+                        className="w-full bg-white text-black py-4 rounded-2xl font-semibold mb-4 hover:scale-[1.02] transition"
+                    >
+                        {loading ? "Logging in..." : "Login"}
+                    </button>
+
+                    <button
+                        onClick={handleGuest}
+                        className="w-full border border-white/10 py-4 rounded-2xl hover:bg-white/10 transition"
+                    >
+                        Continue as Guest
+                    </button>
+                </div>
+            </section>
+        </main>
+    );
 }

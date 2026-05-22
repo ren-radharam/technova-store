@@ -1,6 +1,11 @@
+"use client";
+
+import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 
 export default function Hero() {
+  const { user } = useAuth();
+
     return (
       <section className="relative min-h-[60vh] flex items-center justify-center px-6 pt-20 overflow-hidden">
         
@@ -34,7 +39,7 @@ export default function Hero() {
             </a>
 
             <Link
-              href="/products"
+              href={user ? "/products" : "/login"}
               className="border border-white/10 px-8 py-4 rounded-full hover:bg-white/10 transition"
             >
               Explore Products

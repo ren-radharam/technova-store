@@ -1,3 +1,6 @@
+"use client";
+
+import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/types/product";
@@ -10,8 +13,10 @@ interface ProductCardProps {
 export default function ProductCard({
   product,
 }: ProductCardProps) {
+  const { user } = useAuth();
+
   return (
-    <Link href={`/products/${product.id}`}>
+    <Link href={user ? `/products/${product.id}` : "/login"}>
       <div className="group bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-purple-500/40 transition duration-300 hover:-translate-y-2">
         
         <div className="relative aspect-[4/3] overflow-hidden">

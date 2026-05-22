@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const pathname = usePathname();
   const { cartItems } = useCart();
 
   const cartCount = cartItems.reduce(
@@ -22,33 +24,68 @@ export default function Navbar() {
           </h1>
         </Link>
 
-        <div className="flex items-center gap-6 text-sm font-medium">
-          <Link href="/" className="hover:text-purple-400 transition">
-            Home
-          </Link>
+        <div className="flex items-center gap-8 text-sm font-medium">
 
-          <Link
-            href="/products"
-            className="hover:text-purple-400 transition"
-          >
-            Products
-          </Link>
+          <Link href="/" className={
+            pathname === "/"
+              ? "text-purple-400"
+              : "text-white"
+          }>Home</Link>
 
-          <Link href="/cart" className="hover:text-purple-400 transition">
-            Cart {cartCount > 0 && `(${cartCount})`}
-          </Link>
+        {user && (
+          <>
+            <Link
+              href="/products"
+              className={
+                pathname === "/products"
+                  ? "text-purple-400"
+                  : "text-white"
+              }
+            >
+              Products
+            </Link>
 
-          <Link href="/about" className="hover:text-purple-400 transition">
-            About
-          </Link>
+              <Link href="/cart" className={
+                pathname === "/cart"
+                  ? "text-purple-400"
+                  : "text-white"
+              }>
+                Cart {cartCount > 0 && `(${cartCount})`}
+              </Link>
+          </>
+        )}
 
+        <Link href="/about" className={
+          pathname === "/about"
+            ? "text-purple-400"
+            : "text-white"
+        }>
+          About
+        </Link>
+
+        {!user ? (
           <Link
             href="/login"
-            className="bg-white text-black px-6 py-3 rounded-full font-medium"
+            className="bg-white text-black px-6 py-3 rounded-full font-semibold"
           >
-            {user ? `Hi, ${user.name}` : "Login"}
+            Login
           </Link>
-        </div>
+        ) : (
+          <div className="flex items-center gap-3">
+
+            <span className="bg-white text-black px-5 py-3 rounded-full font-semibold">
+              Hi, {user.name}
+            </span>
+
+            <button
+              onClick={logout}
+              className="border border-white/10 px-5 py-3 rounded-full hover:bg-white/10 transition"
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
       </nav>
     </header>
   );

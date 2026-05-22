@@ -1,11 +1,23 @@
 "use client";
 
-import Image from "next/image";
-import Navbar from "@/components/Navbar";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 import { Trash2 } from "lucide-react";
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
 
 export default function CartPage() {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+        router.push("/login");
+    }
+  }, [user, router]);
+
   const {
     cartItems,
     removeFromCart,
@@ -19,6 +31,8 @@ export default function CartPage() {
     0
   );
 
+  if (!user) return null;
+  
   return (
     <main className="min-h-screen bg-black text-white">
       <Navbar />
@@ -29,9 +43,22 @@ export default function CartPage() {
         </h1>
 
         {cartItems.length === 0 ? (
-          <div className="text-white/60">
-            Your cart is empty.
-          </div>
+        <div className="border border-white/10 bg-white/5 rounded-3xl p-16 text-center">
+            <h2 className="text-4xl font-bold mb-4">
+            Your Cart is Empty
+            </h2>
+
+            <p className="text-white/60 mb-8">
+            Looks like you haven’t added anything yet.
+            </p>
+
+            <button
+            onClick={() => router.push("/products")}
+            className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:scale-105 transition"
+            >
+            Continue Shopping
+            </button>
+        </div>
         ) : (
           <div className="space-y-6">
             {cartItems.map((item) => (

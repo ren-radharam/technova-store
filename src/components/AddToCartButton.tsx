@@ -1,7 +1,7 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface AddToCartButtonProps {
   product: {
@@ -15,21 +15,26 @@ interface AddToCartButtonProps {
 export default function AddToCartButton({
   product,
 }: AddToCartButtonProps) {
+  const [loading, setLoading] = useState(false);
   const { addToCart } = useCart();
-  const router = useRouter();
 
   const handleAddToCart = () => {
-    addToCart(product);
+  setLoading(true);
 
-    router.push("/cart");
+  addToCart(product);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 600);
   };
 
   return (
     <button
       onClick={handleAddToCart}
+      disabled={loading}
       className="bg-white text-black px-6 py-4 rounded-full font-semibold hover:scale-105 transition duration-300 shadow-lg shadow-white/10"
     >
-      Add To Cart
+      {loading ? "Adding..." : "Add to Cart"}
     </button>
   );
 }

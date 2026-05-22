@@ -1,12 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useMemo, useState, useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar";
 import ProductCard from "@/components/ProductCard";
 import SearchBar from "@/components/SearchBar";
 import products from "@/data/products.json";
 
 export default function ProductsPage() {
+  const { user } = useAuth();
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -28,6 +32,14 @@ export default function ProductsPage() {
       return matchesSearch && matchesCategory;
     });
   }, [searchTerm, selectedCategory]);
+
+  useEffect(() => {
+  if (!user) {
+    router.push("/login");
+  }
+  }, [user, router]);
+
+  if (!user) return null;
 
   return (
     <main className="min-h-screen bg-black text-white">
