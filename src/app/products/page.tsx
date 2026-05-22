@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import ProductCard from "@/components/ProductCard";
 import SearchBar from "@/components/SearchBar";
 import products from "@/data/products.json";
+import Footer from "@/components/Footer";
 
 export default function ProductsPage() {
   const { user } = useAuth();
@@ -96,6 +97,7 @@ export default function ProductsPage() {
           </div>
         )}
       </section>
+      <Footer />
     </main>
   );
 }

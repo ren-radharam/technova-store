@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { useAuth } from "./AuthContext";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export interface CartItem {
   id: number;

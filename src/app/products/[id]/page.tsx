@@ -1,9 +1,10 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import products from "@/data/products.json";
 import AddToCartButton from "@/components/AddToCartButton";
 import Navbar from "@/components/Navbar";
 import BuyNowButton from "@/components/BuyNowButton";
+import Footer from "@/components/Footer";
 
 type ProductPageProps = {
   params: Promise<{ id: string }>;
@@ -126,6 +127,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </aside>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

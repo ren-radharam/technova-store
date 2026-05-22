@@ -7,6 +7,8 @@ import { useCart } from "@/context/CartContext";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { toast } from "sonner";
 
 export default function CartPage() {
   const { user } = useAuth();
@@ -37,7 +39,7 @@ export default function CartPage() {
     <main className="min-h-screen bg-black text-white">
       <Navbar />
 
-      <section className="max-w-6xl mx-auto px-6 pt-32 pb-20">
+      <section className="max-w-6xl mx-auto px-6 pt-20 pb-20">
         <h1 className="text-5xl font-bold mb-12">
           Your Cart
         </h1>
@@ -64,9 +66,9 @@ export default function CartPage() {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10 bg-white/5 rounded-3xl p-6"
+                className="flex flex-col md:flex-row md:items-center gap-6 border border-white/10 bg-white/5 rounded-3xl p-6 hover:border-purple-500/30 hover:bg-white/[0.07] transition duration-300"
               >
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-5 flex-1">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -86,53 +88,80 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() =>
-                      decreaseQuantity(item.id)
-                    }
-                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition"
-                  >
-                    -
-                  </button>
-
-                  <span className="text-xl">
-                    {item.quantity}
-                  </span>
-
-                  <button
-                    onClick={() =>
-                      increaseQuantity(item.id)
-                    }
-                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition"
-                  >
-                    +
-                  </button>
-                </div>
-
-                <button
-                    onClick={() =>
-                        removeFromCart(item.id)
-                    }
-                    className="text-red-400 hover:text-red-300 transition"
+                <div className="flex items-center gap-8 self-end md:self-auto">
+                    <div className="flex items-center gap-4">
+                    <button
+                        onClick={() =>
+                        decreaseQuantity(item.id)
+                        }
+                        className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition"
                     >
-                    <Trash2 size={22} />
-                </button>
+                        -
+                    </button>
+
+                    <span className="text-xl">
+                        {item.quantity}
+                    </span>
+
+                    <button
+                        onClick={() =>
+                        increaseQuantity(item.id)
+                        }
+                        className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition"
+                    >
+                        +
+                    </button>
+                    </div>
+
+                    <button
+                        onClick={() =>
+                            removeFromCart(item.id)
+                        }
+                        className="text-red-400 hover:text-red-300 transition"
+                        >
+                        <Trash2 size={22} />
+                    </button>
+                    </div>
               </div>
             ))}
 
             <div className="mt-10 border border-white/10 rounded-3xl bg-white/5 p-8">
-              <div className="flex items-center justify-between text-3xl font-bold">
+              <div className="flex items-center justify-between text-5xl font-bold text-purple-300">
                 <span>Total</span>
 
                 <span>
                   ₹{totalPrice.toLocaleString()}
                 </span>
               </div>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                    onClick={() =>
+                        toast.success(
+                        "Checkout integration coming soon"
+                        )
+                    }
+                    className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-[1.02] transition min-w-[260px]"
+                >
+                    Proceed To Checkout
+                </button>
+
+                <button
+                    onClick={() => router.push("/products")}
+                    className="border border-white/10 px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition min-w-[260px]"
+                >
+                    Continue Shopping
+                </button>
+              </div>
+
+              <p className="text-center text-sm text-white/40 mt-6">
+                Secure checkout powered by TechNova
+              </p>
             </div>
           </div>
         )}
       </section>
+     <Footer />
     </main>
   );
 }
