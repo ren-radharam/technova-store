@@ -1,3 +1,4 @@
+import FeaturedProducts from "@/components/FeaturedProducts";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <main className="bg-black text-white min-h-screen">
       <Navbar />
       <Hero />
+      <FeaturedProducts />
     </main>
   );
 }

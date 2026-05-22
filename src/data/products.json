@@ -1,0 +1,53 @@
+[
+    {
+      "id": 1,
+      "name": "Wireless Headphones",
+      "category": "Audio",
+      "price": 10000,
+      "image": "/products/headphones.jpg",
+      "description": "Premium wireless headphones with immersive sound quality.",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "Mechanical Keyboard",
+      "category": "Accessories",
+      "price": 5000,
+      "image": "/products/keyboard.jpg",
+      "description": "RGB mechanical keyboard designed for performance.",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "name": "Smart Watch Pro",
+      "category": "Wearables",
+      "price": 15000,
+      "image": "/products/smartwatch.jpg",
+      "description": "Track fitness and productivity with smart features.",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "name": "Portable Speaker",
+      "category": "Audio",
+      "price": 30000,
+      "image": "/products/speaker.jpg",
+      "description": "Compact speaker with powerful bass and clarity."
+    },
+    {
+      "id": 5,
+      "name": "Macbook Air",
+      "category": "Computers",
+      "price": 119000,
+      "image": "/products/laptop.jpg",
+      "description": "Lightweight laptop built for creators and developers."
+    },
+    {
+      "id": 6,
+      "name": "Gaming Mouse",
+      "category": "Accessories",
+      "price": 20000,
+      "image": "/products/mouse.jpg",
+      "description": "Precision gaming mouse with customizable controls."
+    }
+  ]
