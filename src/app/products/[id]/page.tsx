@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import products from "@/data/products.json";
+import AddToCartButton from "@/components/AddToCartButton";
+import Navbar from "@/components/Navbar";
 
 type ProductPageProps = {
   params: Promise<{ id: string }>;
@@ -24,6 +26,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <main className="min-h-screen bg-black text-white">
+    <Navbar />
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-start">
           <div className="space-y-6">
@@ -93,9 +96,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             {/* Buttons */}
             <div className="flex flex-col gap-4 mb-8">
-                <button className="bg-white text-black px-6 py-4 rounded-full font-semibold hover:scale-105 transition duration-300 shadow-lg shadow-white/10">
-                Add To Cart
-                </button>
+                <AddToCartButton
+                    product={{
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                    }}
+                />
 
                 <button className="border border-white/10 px-6 py-4 rounded-full hover:bg-white/10 transition">
                 Buy Now
