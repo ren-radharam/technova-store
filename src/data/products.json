@@ -49,5 +49,13 @@
       "price": 20000,
       "image": "/products/mouse.jpg",
       "description": "Precision gaming mouse with customizable controls."
+    },
+    {
+      "id": 7,
+      "name": "Apple Airpods Pro",
+      "category": "Audio",
+      "price": 20000,
+      "image": "/products/airpods.jpg",
+      "description": "Active Noise Cancellation and spatial audio."
     }
   ]

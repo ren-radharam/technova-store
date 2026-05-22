@@ -1,6 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
+  const { user } = useAuth();
+  const { cartItems } = useCart();
+
+  const cartCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/40 backdrop-blur-xl">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -23,7 +35,7 @@ export default function Navbar() {
           </Link>
 
           <Link href="/cart" className="hover:text-purple-400 transition">
-            Cart
+            Cart {cartCount > 0 && `(${cartCount})`}
           </Link>
 
           <Link href="/about" className="hover:text-purple-400 transition">
@@ -32,9 +44,9 @@ export default function Navbar() {
 
           <Link
             href="/login"
-            className="bg-white text-black px-5 py-2 rounded-full hover:scale-105 transition duration-300"
+            className="bg-white text-black px-6 py-3 rounded-full font-medium"
           >
-            Login
+            {user ? `Hi, ${user.name}` : "Login"}
           </Link>
         </div>
       </nav>

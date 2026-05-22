@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
     return (
       <section className="relative min-h-[60vh] flex items-center justify-center px-6 pt-20 overflow-hidden">
@@ -23,14 +25,20 @@ export default function Hero() {
             electronics crafted for the future.
           </p>
   
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <button className="bg-white text-black px-7 py-3 rounded-full font-semibold hover:scale-105 transition duration-300 shadow-lg shadow-white/10">
+          <div className="flex items-center justify-center gap-4">
+            <a
+              href="#featured-products"
+              className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:scale-105 transition duration-300 shadow-lg shadow-white/10"
+            >
               Shop Now
-            </button>
-  
-            <button className="border border-white/20 px-7 py-3 rounded-full hover:bg-white/10 transition duration-300">
+            </a>
+
+            <Link
+              href="/products"
+              className="border border-white/10 px-8 py-4 rounded-full hover:bg-white/10 transition"
+            >
               Explore Products
-            </button>
+            </Link>
           </div>
         </div>
       </section>

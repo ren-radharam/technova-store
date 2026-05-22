@@ -7,7 +7,7 @@ export default function FeaturedProducts() {
   );
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-24">
+    <section id="featured-products" className="max-w-7xl mx-auto px-6 py-24">
       <div className="mb-12">
         <p className="text-purple-400 font-medium mb-3">
           Featured Collection
