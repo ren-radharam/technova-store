@@ -14,7 +14,7 @@ export default function ProductCard({
     <Link href={`/products/${product.id}`}>
       <div className="group bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-purple-500/40 transition duration-300 hover:-translate-y-2">
         
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={product.image}
             alt={product.name}
@@ -32,7 +32,7 @@ export default function ProductCard({
             {product.name}
           </h3>
 
-          <p className="text-white/60 text-sm mb-4 line-clamp-2">
+          <p className="text-white/60 text-sm mb-4 line-clamp-2 min-h-[48px]">
             {product.description}
           </p>
 

@@ -1,6 +1,6 @@
 export default function Hero() {
     return (
-      <section className="relative min-h-[90vh] flex items-center justify-center px-6 overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center justify-center px-6 pt-20 overflow-hidden">
         
         {/* Background Glow */}
         <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-purple-500/20 blur-[120px] rounded-full" />
@@ -18,7 +18,7 @@ export default function Hero() {
             </span>
           </h1>
   
-          <p className="text-white/70 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-white/70 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
             Explore cutting-edge gadgets, premium accessories, and modern
             electronics crafted for the future.
           </p>
