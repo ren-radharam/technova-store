@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import products from "@/data/products.json";
 import AddToCartButton from "@/components/AddToCartButton";
 import Navbar from "@/components/Navbar";
+import BuyNowButton from "@/components/BuyNowButton";
 
 type ProductPageProps = {
   params: Promise<{ id: string }>;
@@ -105,9 +106,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     }}
                 />
 
-                <button className="border border-white/10 px-6 py-4 rounded-full hover:bg-white/10 transition">
-                Buy Now
-                </button>
+                <BuyNowButton
+                    product={{
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                    }}
+                />
             </div>
 
             {/* Product ID */}
